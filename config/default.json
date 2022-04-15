@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://rithikDB:rithikDB1@indiannaroma.gwbs3.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+  "jwtToken": "test"
+}
