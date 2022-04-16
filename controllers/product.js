@@ -60,18 +60,25 @@ exports.addProduct = async (req, res) => {
 
 exports.editProduct = async (req, res) => {
   try {
-    const editProduct = new Product.findByIdAndUpdate(
+    await Product.findByIdAndUpdate(
         req.params.id,
         {
             $set: req.body
         },
         { new : true }
+        , (err, updated) => {
+          if(err) return res.status(400).json({
+            errors: [{ msg: err }]
+          })
+
+          return res.status(200).json({
+            msg: "Product Updated",
+            updated,
+          });
+        }
     )
     
-    res.status(200).json({ 
-        msg: "Product Updated", 
-        editProduct 
-    });
+    
 
   } catch (e) {
     console.log(e.message);

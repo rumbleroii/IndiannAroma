@@ -53,3 +53,43 @@ exports.validateSignIn = [
   },
 ];
 
+exports.validateProduct = [
+  check("title")
+    .trim()
+    .escape()
+    .not()
+    .isEmpty()
+    .withMessage("Title can not be empty!")
+    .bail()
+    .isLength({ min: 5 })
+    .withMessage("Minimum 5 characters required!")
+    .bail(),
+  check("desc")
+    .trim()
+    .not()
+    .isEmpty()
+    .withMessage("Description can not be empty!")
+    .bail(),
+  check("img")
+    .trim()
+    .not()
+    .isEmpty()
+    .withMessage("Please upload an image of the product!")
+    .bail(),
+  check("price")
+    .trim()
+    .not()
+    .isEmpty()
+    .withMessage("Price can not be empty!")
+    .bail()
+    .isFloat({ gt: 5.0 })
+    .withMessage("Price can not be lower than 5!"),
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty())
+      return res.status(422).json({
+        errors: errors.array(),
+      });
+    next();
+  },
+];
