@@ -6,14 +6,14 @@ const UserSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
-  email: {
+  googleId: {
     type: String,
     required: true,
     unique: true,
   },
   password: {
     type: String,
-    required: true,
+    required: false,
   },
   isAdmin: {
     type: Boolean,

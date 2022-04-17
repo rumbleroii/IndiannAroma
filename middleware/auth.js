@@ -1,24 +1,14 @@
 const jwt = require('jsonwebtoken')
-const config = require('config')
+const config = require('config');
+const router = require('../routes/api/auth');
 
-module.exports = (req, res, next) => {
-    const token = req.header('x-auth-token');
 
-    if(!token){
-        return res.status(401).json({
-            errors: [{ msg: 'No token, Auth Denied'}]
-        })
+module.exports = (req,res,next) => {
+    if(!req.user){
+        res.redirect('');
     }
-
-    try {
-        const decoded = jwt.verify(token, config.get('jwtToken'));
-
-        req.user = decoded.user;
+    else{
         next();
-    } catch(err){
-        return res.status(401).json({
-            errors: [{ msg: 'Token Invalid'}]
-        })
     }
-}
+};
 
