@@ -10,7 +10,6 @@ const cookieSession = require('cookie-session');
 const auth = require('./middleware/auth');
 const passportSetup = require('./config/passport-setup');
 
-
 const app = express();
 
 // Connecting DB

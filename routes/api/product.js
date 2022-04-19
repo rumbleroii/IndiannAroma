@@ -11,6 +11,7 @@ const router = express.Router();
 // router.get("/", (req, res) => {
 //     console.log("LOl");
 // });  
+
 router.get("/", auth, isAdmin, productController.getProduct);
 router.post("/add-product", auth, isAdmin, validateProduct, productController.addProduct);
 router.post("/edit-product/:id", auth, isAdmin, validateProduct, productController.editProduct);
