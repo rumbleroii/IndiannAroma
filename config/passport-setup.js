@@ -1,6 +1,7 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20');
 const config = require("config");
+
 const User = require('../models/User');
 
 passport.serializeUser((user,done) => {
@@ -32,9 +33,11 @@ passport.use(
                     googleId: profile.id
                 })
                 .save()
-                .then( (newUser) => {
+                .then((newUser) => {
                     console.log('new user created: ' + newUser);
-                    done(null,newUser);
+                    done(null, newUser);
+
+                    return newUser;
                 });
             }
         });
