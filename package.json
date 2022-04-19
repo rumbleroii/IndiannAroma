@@ -5,7 +5,9 @@
   "main": "app.js",
   "scripts": {
     "start": "supervisor app",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "supervisor app",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "keywords": [],
   "author": "",
@@ -22,8 +24,10 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.2.10",
     "passport": "^0.5.2",
-    "passport-google-oauth20": "^2.0.0",
-    "supervisor": "^0.12.0",
-    "webidl-conversions": "^7.0.0"
+    "passport-google-oauth20": "^2.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^7.1.0",
+    "supervisor": "^0.12.0"
   }
 }

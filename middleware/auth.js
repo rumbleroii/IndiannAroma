@@ -5,7 +5,7 @@ const router = require('../routes/api/auth');
 
 module.exports = (req,res,next) => {
     if(!req.user){
-        res.redirect('');
+        res.send('Not Authenticated');
     }
     else{
         next();

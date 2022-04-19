@@ -1,15 +1,13 @@
 const express = require('express');
+
 const router = express.Router();
+
 const passport = require('passport');
 
-router.get('/google', passport.authenticate('google',{
-    scope: ['profile']
-}));
+router.get('/google', passport.authenticate('google',{ scope: ['profile'] }));
 
-//callback route for google to redirect to
-
-router.get('/google/redirect',passport.authenticate('google'),(req,res) => {
-    res.send('<h1>You are now logged in</h1>');
+router.get('/google/redirect', passport.authenticate('google'), (req,res) => {
+    res.status(200).json({ msg : "User Logged In"});
 });
 
 module.exports = router;

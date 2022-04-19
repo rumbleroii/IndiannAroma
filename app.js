@@ -1,18 +1,23 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const connectDB = require('./config/db');
-const passportSetup = require('./config/passport-setup');
-const cookieSession = require('cookie-session');
 const passport = require('passport');
+
+const connectDB = require('./config/db');
+const cookieSession = require('cookie-session');
+
+// Middleware
 const auth = require('./middleware/auth');
+const passportSetup = require('./config/passport-setup');
+
+
 const app = express();
 
 // Connecting DB
 connectDB();
 
 app.use(cookieSession({
-    maxAge: 24*60*60,
+    maxAge: 24*60*60*60,
     keys:['oaiwdaowndaow']
 }));
 
@@ -33,6 +38,7 @@ app.use("/api/product", require("./routes/api/product"));
 app.use("/api/cart", require("./routes/api/cart"));
 app.use("/api/orders", require("./routes/api/order"));
 app.use('/api/auth', require("./routes/api/auth"));
+
 app.listen(8000, () => {
     console.log("[Info] Server started successfully! Listening at 8000");
 });
