@@ -6,6 +6,10 @@ const UserSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
+  email: {
+    type: String,
+    required: true
+  },
   googleId: {
     type: String,
     required: true,
